@@ -1,2 +1,2 @@
-# Owner-avatar-Desenvolvimento-de-Sistemas-para-Web-Mobile-III
+# Desenvolvimento-de-Sistemas-para-Web-Mobile-III
 Parte 3
