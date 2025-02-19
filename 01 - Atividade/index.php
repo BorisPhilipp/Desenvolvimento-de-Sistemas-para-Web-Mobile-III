@@ -169,5 +169,31 @@
 				echo "<h3>$formatado</h3>";
 			}
 		?>
+
+	<h3>Questão 9</h3> <!--Crie um programa que calcule e imprima os números Fibonacci até o décimo termo.-->
+		<?php
+			function fibonacci($n){
+				if($n<=0){
+					return 0;
+				}elseif($n==1){
+					return 1;
+				}
+
+				$fibo_penultimo =0;
+				$fibo_ultimo =1;
+
+				for($o=2; $o <= $n; $o++){
+					$fibo_atual = $fibo_ultimo + $fibo_penultimo;
+					$fibo_penultimo = $fibo_ultimo;
+					$fibo_ultimo = $fibo_atual;
+				}
+				return $fibo_penultimo;
+			}
+
+			echo "Decimo Termo de Fibonacci é: ".fibonacci(10);
+		?>
+
+	<h3>Questão 10</h3> <!---Crie uma função que receba um texto e retorne se é um pangrama (contém todas as letras do alfabeto pelo menos uma vez)--->
+
 </body>
 </html>
