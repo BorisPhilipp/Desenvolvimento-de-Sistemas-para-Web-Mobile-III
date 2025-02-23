@@ -194,6 +194,32 @@
 		?>
 
 	<h3>Questão 10</h3> <!---Crie uma função que receba um texto e retorne se é um pangrama (contém todas as letras do alfabeto pelo menos uma vez)--->
+	<form method="POST" action="">
+			<input type="text" name="antes_pangram" placeholder="É um Pangrama?" required>
+			<button type="submit">Enviar</button>
+		</form>
+		<?php
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				$frase = $_POST['antes_pangram'];
+				$frase = strtolower($frase);
 
+				function is_pangram($frase){
+					$frase = preg_replace("/[^a-z]/", "", $frase); //remove tudo o que não é letras
+					$alfabeto = range('a','z');
+					foreach($alfabeto as $letra){
+						if(strpos($frase, $letra) === false){
+							return false;
+						}
+					}
+				return true;
+				}
+
+				if(is_pangram($frase)){
+					echo "É um Pangrama.";
+				} else{
+					echo "Não é um Pangrama.";
+				}
+			}		
+		?>
 </body>
 </html>
