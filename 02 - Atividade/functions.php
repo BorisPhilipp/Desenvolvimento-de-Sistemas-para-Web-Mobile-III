@@ -21,7 +21,7 @@
                 $linha = fgets($arquivo_notas);
                 if(!empty($linha)){
                     list($nome_aluno,$nota_aluno) = explode(",", $linha);
-                    $alunos[] = ["nome" => $nome, "nota" => floatval($nota_aluno)];
+                    $alunos[] = ["nome" => $nome_aluno, "nota" => floatval($nota_aluno)];
                 }
             }
             fclose($arquivo_notas);

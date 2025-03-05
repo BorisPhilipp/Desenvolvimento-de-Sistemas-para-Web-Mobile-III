@@ -1,37 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>PHP - Manipulação de Arquivos (Atividade 02)</title>
+    <meta charset="UTF-8">
+    <title>PHP - Cadastro de Alunos e Notas</title>
 </head>
 <body>
-	<h1>Sistema de Notas</h1>
-	<form method="POST" action="">
-		<input type="text" name="aluno" placeholder="Nome do Aluno" required>
-		<br>
-		<input type="text" name="nota" placeholder="Nota do Aluno" required>
-		<br>
-		<button type="submit">Enviar</button>
-	</form>
-
-	<h2>Notas dos Alunos:</h1>
-	<?php
-		$arquivo_notas = fopen("notas.txt", "r");
-		while(!feof($arquivo_notas)){
-			echo fgets($arquivo_notas) . "<br>";
-		}
-		fclose($arquivo_notas);
-	?>
-
-	<?php
-		if($_SERVER['REQUEST_METHOD'] == "POST"){
-	
-		
-
-		}
-	?>
-
+    <h1>Atividade 02 - Mão na Massa</h1>
+    <h1>Cadastrar Aluno</h1>
+    <form method="post" action="process.php">
+        <label for="nome">Nome do Aluno:</label>
+        <input type="text" id="aluno" name="aluno" required>
+        <br>
+        <label for="nota">Nota do Aluno:</label>
+        <input type="number" id="nota" name="nota" min="0" max="10" required>
+        <br>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <br>
+    <a href="list.php">Listar Alunos e Calcular Média</a>
 </body>
 </html>
-
