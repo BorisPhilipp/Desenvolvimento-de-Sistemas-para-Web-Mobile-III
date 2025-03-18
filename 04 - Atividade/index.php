@@ -1,113 +1,85 @@
 <?php
+	class Produto{
+		private $nome;
+		private $preco;
+		private $quantidade;
+		
+		public function __construct($nome,$preco,$quantidade){
+			$this->nome = $nome;
+			$this->preco = $preco;
+			$this->quantidade = $quantidade;
+		}
 
-// 2. Definir as configurações de conexão com o banco de dados
-$host = 'localhost';  // Endereço do servidor de banco de dados
-$dbname = 'zoologico';  // Nome do banco de dados
-$username = 'root';  // Nome do usuário do banco de dados
-$password = '';  // Senha do banco de dados
+		public function getNome(){
+			return $this->nome;
+		}
 
-// 3. Criar a conexão PDO com o banco de dados
-try {
-    // Tenta estabelecer a conexão com o banco de dados usando PDO
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    // Define o modo de erro para exceções, o que facilita o tratamento de erros
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Conexão bem-sucedida!"; // Mensagem de teste
-} catch (PDOException $e) {
-    // Se a conexão falhar, exibe uma mensagem de erro e interrompe o script
-    die("Erro na conexão: " . $e->getMessage());
-}
+		public function getPreco(){
+			return $this->preco;
+		}
 
-// 4. Função para listar todos os animais
-function listarAnimais() {
-    global $pdo;  // Acessa a variável PDO definida acima
-    $stmt = $pdo->query("SELECT * FROM animais");  // Faz a consulta no banco de dados
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);  // Retorna todos os resultados como um array associativo
-}
+		public function getQuantidade(){
+			return $this->quantidade;
+		}
 
-// 5. Função para adicionar um novo animal
-function adicionarAnimal($nome, $especie, $idade, $habitat) {
-    global $pdo;  // Acessa a variável PDO
-    $stmt = $pdo->prepare("INSERT INTO animais (nome, especie, idade, habitat) VALUES (:nome, :especie, :idade, :habitat)");
-    $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':especie', $especie);
-    $stmt->bindParam(':idade', $idade, PDO::PARAM_INT);
-    $stmt->bindParam(':habitat', $habitat);
-    
-    if ($stmt->execute()) {
-        echo "Animal registrado com sucesso!";
-    } else {
-        echo "Erro ao registrar o animal.";
-    }
-}
+		public function setNome($novoNome){
+			$this->nome = $novoNome;
+		}
 
-// 6. Função para editar as informações de um animal
-function editarAnimal($id, $nome, $especie, $idade, $habitat) {
-    global $pdo;  // Acessa a variável PDO
-    $stmt = $pdo->prepare("UPDATE animais SET nome = :nome, especie = :especie, idade = :idade, habitat = :habitat WHERE id = :id");
-    $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':especie', $especie);
-    $stmt->bindParam(':idade', $idade, PDO::PARAM_INT);
-    $stmt->bindParam(':habitat', $habitat);
-    
-    if ($stmt->execute()) {
-        echo "Animal atualizado com sucesso!";
-    } else {
-        echo "Erro ao atualizar o animal.";
-    }
-}
+		public function setPreco($novoPreco){
+			$this->preco = $novoPreco;
+		}
 
-// 7. Função para excluir um animal
-function excluirAnimal($id) {
-    global $pdo;  // Acessa a variável PDO
-    $stmt = $pdo->prepare("DELETE FROM animais WHERE id = :id");
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    
-    if ($stmt->execute()) {
-        echo "Animal excluído com sucesso!";
-    } else {
-        echo "Erro ao excluir o animal.";
-    }
-}
+		public function setQuantidade($novoQuantidade){
+			$this->quantidade = $novoQuantidade;
+		}
 
-if($_SERVER['REQUEST_METHOD']== "POST"){
-    $nome = $_POST["nome"];
-    $especie = $_POST["especie"];
-    $idade = $_POST["idade"];
-    $habitat = $_POST["habitat"];
+	}
 
-    adicionarAnimal($nome,$especie,$idade,$habitat);
-    header("Location: index.php");
-}
+	class Estoque{
+
+	}
 
 
-// 9. Teste para listar os animais
-$animais = listarAnimais();
-echo '<pre>';
-print_r($animais);  // Exibe a lista de animais
-
-echo "\nFim do script.";
 ?>
 
+<!-- Métodos para:
+• Exibir as informações do produto.
+• Aplicar um desconto no preço do produto.
+• Atualizar a quantidade em estoque. -->
+
+<!-- Crie uma classe Estoque que gerencie múltiplos produtos:
+• Método para adicionar produtos ao estoque.
+• Método para listar os produtos disponíveis.
+• Método para calcular o valor total do estoque.
+• Instancie alguns produtos e teste o sistema. -->
+
+<!-- Exercício
+1. Criar a classe Produto com os atributos e métodos necessários.
+2. Criar a classe Estoque para gerenciar múltiplos produtos.
+3. Criar objetos dessas classes e testar todas as funcionalidades.
+Dica: Utilize conceitos como encapsulamento (modificadores de acesso private,
+public), métodos construtores (__construct), e arrays para armazenar produtos. -->
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDO - Teste</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OOP</title>
 </head>
 <body>
-    <form method="POST">
-        <input type="number" name="id" placeholder="ID do animal" required><br>
-        <input type="text" name="nome" placeholder="Nome do animal" required><br>
-        <input type="text" name="especie" placeholder="Especie do animal" required><br>
-        <input type="number" name="idade" placeholder="Idade do animal" required><br>
-        <input type="text" name="habitat" placeholder="Habitat do animal" required><br>
-        <button type="submit">enviar</button>
-    </form>
+	<h1>Sistema de Gestão de Produtos</h1>
+	<nav>
+		<form action="post">
+			<input type="text" name="nome" placeholder="Nome do Produto" required>
+			<input type="text" name="preco" placeholder="Preço do Produto" required>
+			<input type="text" name="quantidade" placeholder="Quantidade" required>
+			<button type="submit"></button>
+		</form>
 
 
+	</nav>
 
 
 </body>
