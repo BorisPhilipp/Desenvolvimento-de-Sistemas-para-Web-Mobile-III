@@ -22,7 +22,17 @@
 			return $this->quantidade;
 		}
 
+		public function setNome($novoNome){
+			$this->nome = $novoNome;
+		}
 
+		public function setPreco($novoPreco){
+			$this->preco = $novoPreco;
+		}
+
+		public function setQuantidade($novoQuantidade){
+			$this->quantidade = $novoQuantidade;
+		}
 
 	}
 
