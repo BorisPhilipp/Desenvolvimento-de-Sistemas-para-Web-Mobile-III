@@ -71,9 +71,15 @@ function excluirAnimal($id) {
     }
 }
 
+if($_SERVER['REQUEST_METHOD']== "POST"){
+    $nome = $_POST["nome"];
+    $especie = $_POST["especie"];
+    $idade = $_POST["idade"];
+    $habitat = $_POST["habitat"];
 
-    adicionarAnimal('Tigre', 'Felino', 4, 'Floresta');
-    echo "Animal adicionado!";
+    adicionarAnimal($nome,$especie,$idade,$habitat);
+    header("Location: index.php");
+}
 
 
 // 9. Teste para listar os animais
@@ -84,3 +90,25 @@ print_r($animais);  // Exibe a lista de animais
 echo "\nFim do script.";
 ?>
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDO - Teste</title>
+</head>
+<body>
+    <form method="POST">
+        <input type="number" name="id" placeholder="ID do animal" required><br>
+        <input type="text" name="nome" placeholder="Nome do animal" required><br>
+        <input type="text" name="especie" placeholder="Especie do animal" required><br>
+        <input type="number" name="idade" placeholder="Idade do animal" required><br>
+        <input type="text" name="habitat" placeholder="Habitat do animal" required><br>
+        <button type="submit">enviar</button>
+    </form>
+
+
+
+
+</body>
+</html>
