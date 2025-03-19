@@ -34,10 +34,22 @@
 			$this->quantidade = $novoQuantidade;
 		}
 
+		public function aplicarDesconto($quantia){
+			$novoPreco = $this->getPreco() * (100 - $quantia);
+			$this->setPreco($novoPreco);
+		}
 	}
 
 	class Estoque{
+		private estoque;
+		private valorEstoque;
 
+		public function __construct(){
+			$this->estoque = [];
+			$this->valorEstoque = 0;
+		}
+
+		
 	}
 
 
@@ -62,7 +74,7 @@ Dica: Utilize conceitos como encapsulamento (modificadores de acesso private,
 public), métodos construtores (__construct), e arrays para armazenar produtos. -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,10 +84,10 @@ public), métodos construtores (__construct), e arrays para armazenar produtos. 
 	<h1>Sistema de Gestão de Produtos</h1>
 	<nav>
 		<form action="post">
-			<input type="text" name="nome" placeholder="Nome do Produto" required>
-			<input type="text" name="preco" placeholder="Preço do Produto" required>
-			<input type="text" name="quantidade" placeholder="Quantidade" required>
-			<button type="submit"></button>
+			<input type="text" name="nome" placeholder="Nome do Produto" required><br>
+			<input type="number" name="preco" placeholder="Preço do Produto" required><br>
+			<input type="number" name="quantidade" placeholder="Quantidade" min="0" max="any" required><br>
+			<button type="submit">enviar</button>
 		</form>
 
 
