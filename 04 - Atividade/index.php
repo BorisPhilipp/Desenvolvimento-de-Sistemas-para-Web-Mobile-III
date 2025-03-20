@@ -61,7 +61,6 @@
 			$_SESSION[`estoque`] = $this->estoque;
 		}
 
-
 		public function getEstoque(){
 			if(count($this->estoque) === 0){
 				echo "<p>Não há produtos cadastrados no estoque.</p>";
@@ -72,12 +71,10 @@
 			}
 		}
 
-
 		public function limparEstoque(){
 			$_SESSION[`estoque`] = [];
 			$this->estoque = [];
 		}
-		
 	}
 ?>
 
@@ -121,7 +118,6 @@ public), métodos construtores (__construct), e arrays para armazenar produtos. 
 		<form method="post">
 			<button type="submit" name="limparEstoque">Apagar Estoque</button>
 		</form>
-
 	</nav>
 </body>
 </html>
