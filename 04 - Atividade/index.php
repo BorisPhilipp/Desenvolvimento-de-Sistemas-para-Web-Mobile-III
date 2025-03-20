@@ -1,4 +1,6 @@
 <?php
+	session_start();
+
 	class Produto{
 		private $nome;
 		private $preco;
@@ -46,29 +48,35 @@
 
 	class Estoque{
 		private $estoque;
-		private $valorEstoque;
 
 		public function __construct(){
-			$this->estoque = [];
-			$this->valorEstoque = 0;
+			if(!isset($_SESSION[`estoque`])){
+				$_SESSION[`estoque`] = [];
+			}
+			$this->estoque = $_SESSION[`estoque`];
 		}
 
 		public function setEstoque($produto){
-			foreach($this->estoque as $item){
-				if($item->getNome() === $produto->getNome()){
-					return;
-				}
-			}
 			$this->estoque[] = $produto;
-			$this->valorEstoque += $produto->getPreco() * $produto->getQuantidade();
+			$_SESSION[`estoque`] = $this->estoque;
 		}
 
+
 		public function getEstoque(){
+			if(count($this->estoque) === 0){
+				echo "<p>Não há produtos cadastrados no estoque.</p>";
+				return;
+			}
 			foreach($this->estoque as $produto){
 				echo "<p>Nome do Produto: " . $produto->getNome() . "<br>Preço do Produto: R$" . $produto->getPreco() . "<br>Quantidade: " . $produto->getQuantidade() . "</p>";
 			}
 		}
 
+
+		public function limparEstoque(){
+			$_SESSION[`estoque`] = [];
+			$this->estoque = [];
+		}
 		
 	}
 ?>
@@ -107,7 +115,13 @@ public), métodos construtores (__construct), e arrays para armazenar produtos. 
 			<input type="number" name="quantidade" placeholder="Quantidade" min="0" step="any" required><br>
 			<input type="number" name="desconto" placeholder="Desconto (%)" min="0" max="100" required><br>
 			<button type="submit">Enviar</button>
+			<button type="reset">Limpar Tudo</button>
 		</form>
+
+		<form method="post">
+			<button type="submit" name="limparEstoque">Apagar Estoque</button>
+		</form>
+
 	</nav>
 </body>
 </html>
@@ -127,5 +141,9 @@ public), métodos construtores (__construct), e arrays para armazenar produtos. 
 		$estoque->getEstoque();
 	}
 
-
+	if(isset($_POST['limparEstoque'])){
+		$estoque = new Estoque();
+		$estoque->limparEstoque();
+		echo "<h2>Estoque limpo.</h2>";
+	}
 ?>
