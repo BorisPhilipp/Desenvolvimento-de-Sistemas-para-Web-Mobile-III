@@ -75,6 +75,14 @@
 			$_SESSION[`estoque`] = [];
 			$this->estoque = [];
 		}
+		
+		public function calcularValorTotal(){
+			$total = 0;
+			foreach ($this->estoque as $produto){
+				$total += $produto->getPreco() * $produto->getQuantidade();
+			}
+			return $total;
+		}
 	}
 ?>
 
@@ -118,6 +126,10 @@ public), métodos construtores (__construct), e arrays para armazenar produtos. 
 		<form method="post">
 			<button type="submit" name="limparEstoque">Apagar Estoque</button>
 		</form>
+
+		<form method="post">
+			<button type="submit" name="calcularValorTotal">Calcular Valor Total</button>
+		</form>
 	</nav>
 </body>
 </html>
@@ -141,5 +153,11 @@ public), métodos construtores (__construct), e arrays para armazenar produtos. 
 		$estoque = new Estoque();
 		$estoque->limparEstoque();
 		echo "<h2>Estoque limpo.</h2>";
+	}
+
+	if(isset($_POST['calcularValorTotal'])){
+		$estoque = new Estoque();
+		$total = $estoque->calcularValorTotal();
+		echo "Valor total do estoque R$" . $total . "</h2>";
 	}
 ?>
