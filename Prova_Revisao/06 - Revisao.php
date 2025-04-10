@@ -6,13 +6,7 @@
     <title>06 - Revisao - Classe de produto</title>
 </head>
 <body>
-    <form method="POST">
-        <label>Nome do Produto:</label><br>
-        <input type="text" name="produto" placeholder="Produto"><br>
-        <label>Preço do Produto:</label><br>
-        <input type="number" name="produto" step="0.01" placeholder="Produto"><br><br>
-        <button type="submit">Enviar</button>
-    </form>
+
 </body>
 </html>
 
@@ -22,22 +16,28 @@
         public $preco;
 
         public function __construct($nome, $preco){
-            return $this->nome;
-            return $this->preco;
-        }
+            $this->nome = $nome;
+            $this->preco = $preco;
+            }
 
-        public function getNome(){
-            return $this->nome;
-        }
+        public function calcularDesconto($porcentagem){
+            if($porcentagem < 0 || $porcentagem > 100){
+                echo "Porcentágem Inválida para Desconto.";
+            }
 
-        public function getPreco(){
-            return $this->preco;
-        }
-
-        public function setNome($novoNome){
-            $this->nome = $novoNome;
+            $desconto = ($this->preco * $porcentagem) / 100;
+            $novoPreco = $this->preco - $desconto;
+            return round($desconto, 2);
         }
     }
+
+    $ventilador = new Produtos("Ventilador", 150);
+
+    echo "Produto: ".$ventilador->nome. "<br>";
+    echo "Preco antes do Desconto: ".$ventilador->preco. "<br>";
+
+    $PrecocomDesconto = $ventilador->calcularDesconto(15);
+    echo "Preco depois do Desconto: ".$PrecocomDesconto. "<br>";
 
 ?>
 
