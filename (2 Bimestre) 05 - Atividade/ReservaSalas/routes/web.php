@@ -8,5 +8,5 @@ Route::get('/', function () {
 });
 
 Route::get('/reservas/criar', [ReservaController::class, 'create'])->name('reservas.create');
-Route::post('/reservas', [ReservaController::class, ''])->name('reservas.store');
+Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
 Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');

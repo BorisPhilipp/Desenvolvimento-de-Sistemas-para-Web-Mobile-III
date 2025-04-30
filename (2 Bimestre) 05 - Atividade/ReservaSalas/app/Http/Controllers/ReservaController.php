@@ -10,7 +10,7 @@ class ReservaController extends Controller
 {
     public function create()
     {
-        $salas = Sala::all(); // Carrega todas as salas para o select
+        $salas = Sala::all();
         return view('reservas.create', compact('salas'));
     }
 
