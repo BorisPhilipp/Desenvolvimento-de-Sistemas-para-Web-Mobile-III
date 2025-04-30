@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,6 +12,12 @@ class ReservaController extends Controller
     {
         $salas = Sala::all(); // Carrega todas as salas para o select
         return view('reservas.create', compact('salas'));
+    }
+
+    public function index()
+    {
+        $reservas = Reserva::with('sala')->get();
+        return view('reservas.index', compact('reservas'));
     }
 
     public function store(Request $request)
@@ -26,3 +34,4 @@ class ReservaController extends Controller
         return redirect()->route('reservas.create')->with('success', 'Reserva criada com sucesso!');
     }
 }
+
