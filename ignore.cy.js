@@ -83,25 +83,24 @@ describe('Teste de Registro de Usuário', () => {
 
     cy.get('button').contains('Salvar').click();
 
-    cy.screenshot('7-pagina-editar-editado');
+    cy.screenshot('8-pagina-editar-editado');
 
     cy.get('button').contains('OK').click();
 
     cy.contains('a','Listar').click();
 
-    cy.screenshot('7-pagina-excluir-produto');
+    cy.screenshot('9-pagina-excluir-produto');
 
     cy.get('button').contains('Apagar').click();
 
-    cy.screenshot('7-pagina-excluir-sucesso');
+    cy.screenshot('10-pagina-excluir-sucesso');
 
     cy.get('button').contains('OK').click();
 
-    cy.screenshot('7-pagina-excluir-fim');
+    cy.screenshot('11-pagina-excluir-fim');
 
     cy.visit('https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUJcmljayByb2xs')
 
-    cy.screenshot('8-pagina-creditos');
 
     // Verifica se não há mensagens de erro
     cy.get('.alert-error').should('not.exist');
