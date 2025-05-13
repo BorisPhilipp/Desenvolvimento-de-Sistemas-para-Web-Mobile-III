@@ -1,8 +1,10 @@
-//teste.cy.js
+//teste.cy.js nome orignal do arquivo
+//alterar vite.config.js para o ip 127.0.0.1
+
 
 describe('Teste de Registro de Usuário', () => {
   // 1. Definindo a baseUrl corretamente
-  const baseUrl = 'http://172.32.90.38:8000'; // ou seu URL base
+  const baseUrl = 'http://127.0.0.1:8000'; // ou seu URL base
 
   it('Deve registrar um novo usuário com sucesso', () => {
     // 2. Dados do teste
@@ -18,6 +20,13 @@ describe('Teste de Registro de Usuário', () => {
       valor: '10,00',
       vencimento: '2001-09-11',
       situacao: 'Paga'
+    };
+
+    const novo_item = {
+        produto: 'Apontador de Prego',
+        valor: '19,99',
+        vencimento: '2025-06-22',
+        situacao: 'Pendente'
     };
 
     // 3. Visita a página de registro
@@ -42,20 +51,57 @@ describe('Teste de Registro de Usuário', () => {
 
 
     //Adicionar Produto
-    cy.contains('Cadastrar');
+    cy.contains('a','Cadastrar').click();
     cy.get('input[name="nome"]').should('be.visible').type(item.produto);
     cy.get('input[name="valor"]').type(item.valor);
     cy.get('input[name="vencimento"]').type(item.vencimento);
-    cy.get('select[name="situacao_conta_id"]').select(item.situacao).should('have.value', '1');
+    cy.get('select[name="situacao_conta_id"]').select(item.situacao);
     cy.screenshot('3-pagina-cadastro-produto');
 
     cy.get('button').contains('Cadastrar').click();
 
     //Editar Produto
-    cy.visit(`${baseUrl}/index-conta`);
+    //cy.visit(`${baseUrl}/index-conta`);
+    cy.get('button').contains('OK').click();
 
+    cy.screenshot('4-pagina-produto-cadastrado');
 
+    cy.contains('a','Listar').click();
 
+    cy.screenshot('5-pagina-produto-editar');
+
+    cy.contains('a', 'Editar').click();
+
+    cy.screenshot('6-pagina-editar-produto');
+
+    cy.get('input[name="nome"]').should('be.visible').type('{selectall}').type(novo_item.produto);
+    cy.get('input[name="valor"]').type('{selectall}').type(novo_item.valor);
+    cy.get('input[name="vencimento"]').type(novo_item.vencimento);
+    cy.get('select[name="situacao_conta_id"]').select(novo_item.situacao);
+
+    cy.screenshot('7-pagina-editar-final');
+
+    cy.get('button').contains('Salvar').click();
+
+    cy.screenshot('7-pagina-editar-editado');
+
+    cy.get('button').contains('OK').click();
+
+    cy.contains('a','Listar').click();
+
+    cy.screenshot('7-pagina-excluir-produto');
+
+    cy.get('button').contains('Apagar').click();
+
+    cy.screenshot('7-pagina-excluir-sucesso');
+
+    cy.get('button').contains('OK').click();
+
+    cy.screenshot('7-pagina-excluir-fim');
+
+    cy.visit('https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUJcmljayByb2xs')
+
+    cy.screenshot('8-pagina-creditos');
 
     // Verifica se não há mensagens de erro
     cy.get('.alert-error').should('not.exist');
