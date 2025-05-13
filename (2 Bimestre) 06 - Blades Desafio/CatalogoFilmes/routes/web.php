@@ -9,3 +9,4 @@ Route::get('/', function () {
 
 Route::get('/filmes',[FilmeController::class,'index'])->name('filmes.index');
 Route::post('/filmes',[FilmeController::class,'store'])->name('filmes.store');
+Route::delete('/filmes/{titulo}',[FilmeController::class,'destroy'])->name('filmes.delete'); //Rota para exclusão do filme

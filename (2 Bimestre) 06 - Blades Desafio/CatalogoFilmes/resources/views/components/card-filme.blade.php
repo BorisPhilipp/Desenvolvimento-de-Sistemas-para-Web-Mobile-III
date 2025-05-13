@@ -10,4 +10,12 @@
             <span style="color: red;">⭐ {{  $avaliacao  }}</span>
         @endif
     </p>
+
+    <!-- Formulario para Excluir -->
+    <form method="POST" action="{{ route('filmes.delete', ['titulo' => $titulo]) }}">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Excluir</button>
+    </form>
+
 </div>
