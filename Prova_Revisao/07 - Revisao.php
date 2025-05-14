@@ -31,7 +31,7 @@
         public $acesso;
 
         public function __construct($nome, $email, $acesso){
-            parent::__construct($nome, $email); //chama o construtor da classe pai
+            parent::__construct($nome, $email); //chama o construtor da classe pai, assim não precisa criar outro construtor criando redundancia.
             $this->acesso = $acesso;
         }
 
