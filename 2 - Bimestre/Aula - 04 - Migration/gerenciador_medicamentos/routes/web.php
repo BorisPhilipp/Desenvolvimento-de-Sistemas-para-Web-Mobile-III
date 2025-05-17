@@ -21,4 +21,4 @@ Route::get('/', function () {
 Route::get('/medicamentos',[MedicamentoController::class, 'index'])->name('medicamentos.index');
 Route::post('/medicamentos',[MedicamentoController::class, 'store'])->name('medicamentos.store');
 Route::delete('/medicamentos/{quantidade}',[MedicamentoController::class, 'destry'])->name('medicamentos.destroy');
-Route::post('/medicamentos/{quantidade}/edit',[MedicamentoController::class, 'edit'])->name('medicamentos.edit');
+Route::edit('/medicamentos/{quantidade}/edit',[MedicamentoController::class, 'edit'])->name('medicamentos.edit');
