@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('nome');
             $table->integer('quantidade');
             $table->date('validade')->nullable();
-            $table->string('categoria')->nullable();
+            $table->string('categoria')->nullable();  // <- Criar categorias de alimentos (frutas, legumes, carnes, etc.).
             $table->timestamps();
         });
     }

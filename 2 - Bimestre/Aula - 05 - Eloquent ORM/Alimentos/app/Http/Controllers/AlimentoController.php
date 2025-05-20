@@ -9,7 +9,7 @@ class AlimentoController extends Controller
 {
     public function index()
     {
-        $alimentos = Alimento::orderBy('validade', 'desc')->get();
+        $alimentos = Alimento::orderBy('validade', 'desc')->get(); // <- Criar uma função para filtrar alimentos com data de validade próxima.
         return view('alimentos.index', compact('alimentos'));
     }
 
@@ -24,7 +24,7 @@ class AlimentoController extends Controller
             'nome'=>'required',
             'quantidade'=>'required|integer',
             'validade'=>'nullable|date',
-            'categoria'=>'nullable|string',
+            'categoria'=>'nullable|string', // <-Criar categorias de alimentos (frutas, legumes, carnes, etc.).
         ]);
 
         Alimento::create($request->all());
@@ -43,7 +43,7 @@ class AlimentoController extends Controller
             'nome'=>'required',
             'quantidade'=>'required|integer',
             'validade'=>'nullable|date',
-            'categoria'=>'nullable|string',
+            'categoria'=>'nullable|string',  // <- Criar categorias de alimentos (frutas, legumes, carnes, etc.).
         ]);
 
         $alimento->update($request->all());

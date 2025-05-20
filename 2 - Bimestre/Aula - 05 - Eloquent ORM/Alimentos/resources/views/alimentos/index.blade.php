@@ -30,7 +30,7 @@
                             <button type="submit">Excluir</button>
                         </form>
 
-                        @if($alimento->quantidade < 10)
+                        @if($alimento->quantidade < 10) <!-- <- Exibir um alerta quando um alimento estiver com estoque baixo. -->
                             <span style="color: red; font-weight: bold;"><u>ESTOQUE BAIXO!!</u></span>
                         @endif
 
