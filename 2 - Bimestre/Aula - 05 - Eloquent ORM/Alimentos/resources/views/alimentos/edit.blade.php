@@ -7,6 +7,7 @@
         @csrf
         @method('PUT')
         <input type="text" name="nome" value="{{ $alimento->nome }}" required>
+        <input type="text" name="nome" value="{{ $alimento->categoria }}">
         <input type="number" name="quantidade" value="{{ $alimento->quantidade }}" required>
         <input type="date" name="validade" value="{{ $alimento->validade }}">
         <button type="submit">Atualizar</button>

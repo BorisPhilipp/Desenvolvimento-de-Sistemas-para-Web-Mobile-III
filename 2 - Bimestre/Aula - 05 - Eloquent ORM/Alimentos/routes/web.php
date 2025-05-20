@@ -22,4 +22,3 @@ Route::get('/alimentos/create',[AlimentoController::class,'create'])->name('alim
 Route::post('/alimentos',[AlimentoController::class,'store'])->name('alimentos.store');
 Route::get('/alimentos/{alimento}/edit',[AlimentoController::class,'edit'])->name('alimentos.edit');
 Route::put('/alimentos/{alimento}',[AlimentoController::class,'update'])->name('alimentos.update');
-Route::delete('/alimentos/{alimento}',[AlimentoController::class,'destroy'])->name('alimentos.destroy');

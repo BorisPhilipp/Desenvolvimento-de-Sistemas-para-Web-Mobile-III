@@ -12,8 +12,8 @@
     <ul>
         @foreach($alimentos as $alimento)
             <li>
-                <strong>{{ $alimento->nome }}</strong> - Quantidade: {{ $alimento->quantidade }} - Validade: {{ $alimento->validade ?? 'Sem validade' }}
-
+                <strong>{{ strtoupper($alimento->nome) }}</strong> - <strong>Categoria:</strong> {{ $alimento->categoria ?? 'Sem Categoria' }} - <strong>Quantidade:</strong> {{ $alimento->quantidade }} - <strong>Validade:</strong> {{ $alimento->validade ?? 'Sem validade' }}
+                
                 <a href="{{ route('alimentos.edit', $alimento) }}">Editar</a>
 
                 <form action="{{ route('alimentos.destroy', $alimento) }}" method="post" style="display:inline">
@@ -23,7 +23,7 @@
                 </form>
 
                 @if($alimento->quantidade < 10)
-                    <span style="color: red; font-weight: bold;">ESTOQUE BAIXO!!</span>
+                    <span style="color: red; font-weight: bold;"><u>ESTOQUE BAIXO!!</u></span>
                 @endif
 
             </li>

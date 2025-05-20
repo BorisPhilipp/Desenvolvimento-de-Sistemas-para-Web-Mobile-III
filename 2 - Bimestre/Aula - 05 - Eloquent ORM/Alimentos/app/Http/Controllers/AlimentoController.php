@@ -24,6 +24,7 @@ class AlimentoController extends Controller
             'nome'=>'required',
             'quantidade'=>'required|integer',
             'validade'=>'nullable|date',
+            'categoria'=>'nullable',
         ]);
 
         Alimento::create($request->all());
@@ -42,6 +43,7 @@ class AlimentoController extends Controller
             'nome'=>'required',
             'quantidade'=>'required|integer',
             'validade'=>'nullable|date',
+            'categoria'=>'nullable',
         ]);
 
         $alimento->update($request->all());
