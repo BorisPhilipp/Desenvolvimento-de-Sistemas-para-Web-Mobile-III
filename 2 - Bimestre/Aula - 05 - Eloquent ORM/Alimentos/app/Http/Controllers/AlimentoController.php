@@ -9,7 +9,7 @@ class AlimentoController extends Controller
 {
     public function index()
     {
-        $alimentos = Alimento::all();
+        $alimentos = Alimento::orderBy('validade', 'desc')->get();
         return view('alimentos.index', compact('alimentos'));
     }
 
@@ -24,12 +24,12 @@ class AlimentoController extends Controller
             'nome'=>'required',
             'quantidade'=>'required|integer',
             'validade'=>'nullable|date',
-            'categoria'=>'nullable',
+            'categoria'=>'nullable|string',
         ]);
 
         Alimento::create($request->all());
 
-        return redirect()->route('alimentos.index')->with('sucesso', 'Alimentos adicionado!');
+        return redirect()->route('alimentos.index')->with('sucesso', 'Alimentos adicionados!');
     }
 
     public function edit(Alimento $alimento)
@@ -43,7 +43,7 @@ class AlimentoController extends Controller
             'nome'=>'required',
             'quantidade'=>'required|integer',
             'validade'=>'nullable|date',
-            'categoria'=>'nullable',
+            'categoria'=>'nullable|string',
         ]);
 
         $alimento->update($request->all());
