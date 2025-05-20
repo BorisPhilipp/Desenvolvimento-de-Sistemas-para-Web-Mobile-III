@@ -23,6 +23,15 @@
     @foreach($medicamentos as $medicamento)
         <li>
             <strong>{{ $medicamento->nome }}</strong> - {{ $medicamento->descricao ?? 'Sem descrição' }} - Quantidade: {{ $medicamento->quantidade }}
+
+            <a href="{{ route('medicamentos.edit', $medicamento) }}">Editar</a>
+
+              <form method="POST" action="{{ route('medicamentos.destroy', $alimento) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Apagar</button>
+              </form>
+
         </li>
     @endforeach
    </ul>

@@ -20,5 +20,6 @@ Route::get('/', function () {
 
 Route::get('/medicamentos',[MedicamentoController::class, 'index'])->name('medicamentos.index');
 Route::post('/medicamentos',[MedicamentoController::class, 'store'])->name('medicamentos.store');
-Route::delete('/medicamentos/{quantidade}',[MedicamentoController::class, 'destry'])->name('medicamentos.destroy');
-Route::edit('/medicamentos/{quantidade}/edit',[MedicamentoController::class, 'edit'])->name('medicamentos.edit');
+Route::get('/medicamentos/{medicamento}/edit',[MedicamentoController::class, 'edit'])->name('medicamentos.edit'); //Rota para editar os campos do medicamento.
+Route::put('/medicamentos/{medicamento}',[MedicamentoController::class,'update'])->name('medicamentos.update');
+Route::delete('/medicamentos/{medicamento}',[MedicamentoController::class, 'destroy'])->name('medicamentos.destroy');// Rota para remover os medicamentos da pagina e database.
