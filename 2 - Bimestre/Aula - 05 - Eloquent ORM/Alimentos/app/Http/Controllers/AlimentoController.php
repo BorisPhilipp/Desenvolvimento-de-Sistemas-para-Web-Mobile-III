@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Alimento;
+
 use Illuminate\Http\Request;
+use App\Models\Alimento;
 
 class AlimentoController extends Controller
 {
     public function index()
     {
         $alimentos = Alimento::all();
-        return view('alimentos.index',compact('alimentos'));
+        return view('alimentos.index', compact('alimentos'));
     }
 
     public function create()

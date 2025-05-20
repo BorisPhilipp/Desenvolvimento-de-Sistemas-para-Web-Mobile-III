@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     <h1>Editar Alimento</h1>
@@ -8,7 +8,7 @@
         @method('PUT')
         <input type="text" name="nome" value="{{ $alimento->nome }}" required>
         <input type="number" name="quantidade" value="{{ $alimento->quantidade }}" required>
-        <input type="number" name="validade" value="{{ $alimento->validade }}">
+        <input type="date" name="validade" value="{{ $alimento->validade }}">
         <button type="submit">Atualizar</button>
     </form>
 @endsection

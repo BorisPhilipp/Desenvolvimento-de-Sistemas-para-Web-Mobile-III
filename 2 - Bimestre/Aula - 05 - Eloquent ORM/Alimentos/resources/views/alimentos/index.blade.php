@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     <h1>Lista de Alimentos</h1>
@@ -16,11 +16,16 @@
 
                 <a href="{{ route('alimentos.edit', $alimento) }}">Editar</a>
 
-                <form action="{{ route('alimentos.destroy', $alimento) }}" method="post" style="disply:inline">
+                <form action="{{ route('alimentos.destroy', $alimento) }}" method="post" style="display:inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit">Excluir</button>
                 </form>
+
+                @if($alimento->quantidade < 10)
+                    <span style="color: red; font-weight: bold;">ESTOQUE BAIXO!!</span>
+                @endif
+
             </li>
         @endforeach
     </ul>
