@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+</head>
+</html>
+
 @extends('layouts.main')
 
 @section('content')
@@ -9,24 +15,28 @@
 
     <a href="{{ route('alimentos.create') }}">Adicionar Novo Alimento</a>
 
-    <ul>
-        @foreach($alimentos as $alimento)
-            <li>
-                <strong>{{ strtoupper($alimento->nome) }}</strong> - <strong>Categoria:</strong> {{ $alimento->categoria ?? 'Sem Categoria' }} - <strong>Quantidade:</strong> {{ $alimento->quantidade }} - <strong>Validade:</strong> {{ $alimento->validade ?? 'Sem validade' }}
-                
-                <a href="{{ route('alimentos.edit', $alimento) }}">Editar</a>
+    <div class="container">
+        <div class="container-dentro">
+            <ul class="lista">
+                @foreach($alimentos as $alimento)
+                    <li class="lista-dentro">
+                        <strong>{{ strtoupper($alimento->nome) }}</strong> - <strong>Categoria:</strong> {{ $alimento->categoria ?? 'Sem Categoria' }} - <strong>Quantidade:</strong> {{ $alimento->quantidade }} - <strong>Validade:</strong> {{ $alimento->validade ?? 'Sem validade' }}
 
-                <form action="{{ route('alimentos.destroy', $alimento) }}" method="post" style="display:inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Excluir</button>
-                </form>
+                        <a href="{{ route('alimentos.edit', $alimento) }}">Editar</a>
 
-                @if($alimento->quantidade < 10)
-                    <span style="color: red; font-weight: bold;"><u>ESTOQUE BAIXO!!</u></span>
-                @endif
+                        <form action="{{ route('alimentos.destroy', $alimento) }}" method="post" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Excluir</button>
+                        </form>
 
-            </li>
-        @endforeach
-    </ul>
+                        @if($alimento->quantidade < 10)
+                            <span style="color: red; font-weight: bold;"><u>ESTOQUE BAIXO!!</u></span>
+                        @endif
+
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
 @endsection
