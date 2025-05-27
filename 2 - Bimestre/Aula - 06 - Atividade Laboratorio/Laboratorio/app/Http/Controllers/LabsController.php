@@ -32,9 +32,8 @@ class LabsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'exame_id' => 'required|string|unique:labs_exames,exame_id',    //id unico
             'nome' => 'required|string|max:100',    //limita o numero de caracteres
-            'tipo_exame' => 'required|in:Sequenciamento,PCR,Microarray',
+            'tipo_exame' => 'required|string',
             'data_coleta' => 'required|date|before_or_equal:today', //before or equal == =<
             'laudo' => 'nullable|string|max:500'
         ]);
