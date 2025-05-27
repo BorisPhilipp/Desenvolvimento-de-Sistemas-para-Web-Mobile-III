@@ -9,5 +9,5 @@ class LabsExames extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['exame_id', 'nome', 'tipo_exame', 'data_coleta', 'laudo'];
+    protected $fillable = ['nome', 'tipo_exame', 'data_coleta', 'laudo'];
 }

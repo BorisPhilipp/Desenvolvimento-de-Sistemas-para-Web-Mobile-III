@@ -14,8 +14,8 @@ class LabsController extends Controller
      */
     public function index()
     {
-        $laboratorio = LabsExames::all();
-        return view('laboratorio.index', compact('laboratorio'));
+        $exames = LabsExames::all(); //lista tudo da tabela
+        return view('exames.index', compact('exames')); //redireciona para a blade Index.
     }
 
     /**
@@ -23,7 +23,7 @@ class LabsController extends Controller
      */
     public function create()
     {
-        return view('laboratorio.create');
+        return view('exames.create'); //redireciona para blade Create
     }
 
     /**
@@ -31,38 +31,50 @@ class LabsController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'exame_id' => 'required|string|unique:labs_exames,exame_id',    //id unico
+            'nome' => 'required|string|max:100',    //limita o numero de caracteres
+            'tipo_exame' => 'required|in:Sequenciamento,PCR,Microarray',
+            'data_coleta' => 'required|date|before_or_equal:today', //before or equal == =<
+            'laudo' => 'nullable|string|max:500'
+        ]);
+
+        LabsExames::create($request->all());
+
+        return redirect()->route('exames.index')->with('success', 'Exame cadastrado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(LabsExames $exames)
     {
-        //
+        return view('exames.edit', compact('exames'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, LabsExames $exames)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:100',    
+            'tipo_exame' => 'required|in:Sequenciamento,PCR,Microarray',
+            'laudo' => 'nullable|string|max:500'
+        ]);
+
+        $exames->update($request->all());
+        return redirect()->route('exames.index')->with('sucesso','Exame Alterado!');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(LabsExames $exames)
     {
-        //
+        $exames->delete();
+        return redirect()->route('exames.index')->with('sucesso','Exame removido.');
     }
 }
