@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('labs_exames', function (Blueprint $table) {
             $table->id('exame_id');
             $table->string('nome', 100);
-            $table->enum('tipo_exame', ['Sequenciamento', 'PCR', 'Microarray']);
+            $table->string('tipo_exame');
             $table->date('data_coleta');
             $table->string('laudo', 500)->nullable();
             $table->timestamps();
