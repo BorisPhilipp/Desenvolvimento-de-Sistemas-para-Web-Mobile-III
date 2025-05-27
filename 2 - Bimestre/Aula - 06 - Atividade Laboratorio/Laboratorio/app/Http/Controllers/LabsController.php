@@ -35,7 +35,7 @@ class LabsController extends Controller
             'nome' => 'required|string|max:100',    //limita o numero de caracteres
             'tipo_exame' => 'required|string',
             'data_coleta' => 'required|date|before_or_equal:today', //before or equal == =<
-            'laudo' => 'nullable|string|max:500'
+            'laudo' => 'nullable|string'
         ]);
 
         LabsExames::create($request->all());
@@ -59,8 +59,9 @@ class LabsController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:100',    
-            'tipo_exame' => 'required|in:Sequenciamento,PCR,Microarray',
-            'laudo' => 'nullable|string|max:500'
+            'tipo_exame' => 'required|string',
+            'data_coleta' => 'required|date|before_or_equal:today',
+            'laudo' => 'nullable|string',
         ]);
 
         $exames->update($request->all());

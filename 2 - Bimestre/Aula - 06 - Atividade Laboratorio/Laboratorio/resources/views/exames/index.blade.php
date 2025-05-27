@@ -11,10 +11,11 @@
 
 @section('content')
     <h1>Lista de Exames</h1>
+    <a href="{{ route('exames.create') }}">Criar Exame</a>
 
     <ul>
         @foreach($exames as $lab)
-            <li>{{ $lab->nome }} - {{ $lab->tipo_exame }} - {{ $lab->data_coleta }} - {{ $lab->laudo ?? 'Sem Laudo' }}</li>
+            <li> <strong>Nome do Paciente:</strong> {{ $lab->nome }} - <strong>Tipo de Exame:</strong> {{ $lab->tipo_exame }} - <strong>Data Marcada:</strong> {{ $lab->data_coleta }} - <strong>Laudo do Paciente:</strong> {{ $lab->laudo ?? 'Sem Laudo' }}</li>
         @endforeach
     </ul>
 @endsection

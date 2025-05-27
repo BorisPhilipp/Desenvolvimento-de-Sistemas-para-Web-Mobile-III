@@ -7,7 +7,7 @@
         @csrf
         <input type="text" name="nome" placeholder="Nome do Paciente" required>
         <input type="text" name="tipo_exame" placeholder="Tipo de exame" required>
-        <input type="text" name="laudo" placeholder="Laudo" required>
+        <input type="text" name="laudo" placeholder="Laudo">
         <input type="date" name="data_coleta" required>
         <button type="submit">Criar Exame</button>
     </form>
