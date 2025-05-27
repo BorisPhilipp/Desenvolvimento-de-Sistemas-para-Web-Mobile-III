@@ -10,5 +10,7 @@ class LabsExames extends Model
     use HasFactory;
 
     protected $table = "labs_exames";
+    protected $primaryKey = "exame_id";
+
     protected $fillable = ['nome', 'tipo_exame', 'data_coleta', 'laudo'];
 }

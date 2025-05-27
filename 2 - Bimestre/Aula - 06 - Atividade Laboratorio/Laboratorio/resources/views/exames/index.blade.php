@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exames</title>
-</head>
-</html>
-
 @extends('layouts.main')
 
 @section('content')
@@ -19,8 +10,21 @@
     <a href="{{ route('exames.create') }}">Criar Exame</a>
 
     <ul>
-        @foreach($exames as $lab)
-            <li> <strong>Nome do Paciente:</strong> {{ $lab->nome }} - <strong>Tipo de Exame:</strong> {{ $lab->tipo_exame }} - <strong>Data Marcada:</strong> {{ $lab->data_coleta }} - <strong>Laudo do Paciente:</strong> {{ $lab->laudo ?? 'Sem Laudo' }}</li>
+        @foreach($exames as $exame)
+            <li>
+                <strong>Nome do Paciente:</strong> {{ $exame->nome }} - 
+                <strong>Tipo de Exame:</strong> {{ $exame->tipo_exame }} - 
+                <strong>Data Marcada:</strong> {{ $exame->data_coleta }} - 
+                <strong>Laudo do Paciente:</strong> {{ $exame->laudo ?? 'Sem Laudo' }}
+
+                    <a href="{{ route('exames.edit', $exame) }}">Editar Exame</a>
+
+                    <form action="{{ route('exames.destroy', $exame) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Excluir Exame</button>
+                    </form>        
+            </li>
         @endforeach
     </ul>
 @endsection
