@@ -1,7 +1,17 @@
 @extends('layouts.main')
 
+@section('title', 'Editando Exame')
+
 @section('content')
     <h1>Editar Exame</h1>
+
+    @if($errors->any())
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
 
     <form action="{{ route('exames.update', $exame) }}" method="post">
         @csrf

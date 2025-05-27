@@ -36,6 +36,14 @@ class LabsController extends Controller
             'tipo_exame' => 'required|in:Sequenciamento,PCR,Microarray',
             'data_coleta' => 'required|date|before_or_equal:today', //before or equal == =<
             'laudo' => 'nullable|string|max:500'
+        ], [ //erros personalizados quando houver falha de validação. 
+            'nome.required'=> 'Você deve incluir seu nome.',
+            'nome.max'=> 'O Nome não deve exceder de 100 caracteres.',
+            'tipo_exame.require'=>'É obrigatório selecionar o tipo de exame.',
+            'tipo_exame.in'=>'Você deve escolher uma opção válida.',
+            'data_coleta.required'=>'A data de coleta é obrigatória.',
+            'data_coleta.before_or_equal'=>'A data não pode ser futura.',
+            'laudo.max'=>'O Laudo não deve exceder 500 caractéres.'
         ]);
 
         LabsExames::create($request->all());
@@ -61,7 +69,15 @@ class LabsController extends Controller
             'nome' => 'required|string|max:100',    
             'tipo_exame' => 'required|in:Sequenciamento,PCR,Microarray',
             'data_coleta' => 'required|date|before_or_equal:today',
-            'laudo' => 'nullable|string|max:500',
+            'laudo' => 'nullable|string|max:500'
+        ], [
+            'nome.required'=> 'Você deve incluir seu nome.',
+            'nome.max'=> 'O Nome não deve exceder de 100 caracteres.',
+            'tipo_exame.require'=>'É obrigatório selecionar o tipo de exame.',
+            'tipo_exame.in'=>'Você deve escolher uma opção válida.',
+            'data_coleta.required'=>'A data de coleta é obrigatória.',
+            'data_coleta.before_or_equal'=>'A data não pode ser futura.',
+            'laudo.max'=>'O Laudo não deve exceder 500 caractéres.'
         ]);
 
         $exame->update($request->all());
