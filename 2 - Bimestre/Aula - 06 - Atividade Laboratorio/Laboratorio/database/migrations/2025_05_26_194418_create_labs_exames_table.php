@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('nome', 100);
             $table->string('tipo_exame');
             $table->date('data_coleta');
-            $table->text('laudo')->nullable();
+            $table->string('laudo', 500)->nullable();
             $table->timestamps();
         });
     }

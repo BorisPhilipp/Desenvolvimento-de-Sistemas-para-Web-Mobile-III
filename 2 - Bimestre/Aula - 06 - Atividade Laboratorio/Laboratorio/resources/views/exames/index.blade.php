@@ -11,6 +11,11 @@
 
 @section('content')
     <h1>Lista de Exames</h1>
+
+    @if(session('sucesso'))
+        <p style="color:green;">{{ session('sucesso') }}</p>
+    @endif
+
     <a href="{{ route('exames.create') }}">Criar Exame</a>
 
     <ul>

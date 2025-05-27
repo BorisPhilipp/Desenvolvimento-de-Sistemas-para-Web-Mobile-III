@@ -35,12 +35,12 @@ class LabsController extends Controller
             'nome' => 'required|string|max:100',    //limita o numero de caracteres
             'tipo_exame' => 'required|string',
             'data_coleta' => 'required|date|before_or_equal:today', //before or equal == =<
-            'laudo' => 'nullable|string'
+            'laudo' => 'nullable|string|max:500'
         ]);
 
         LabsExames::create($request->all());
 
-        return redirect()->route('exames.index')->with('success', 'Exame cadastrado com sucesso!');
+        return redirect()->route('exames.index')->with('sucesso', 'Exame cadastrado com sucesso!');
     }
 
 
@@ -61,7 +61,7 @@ class LabsController extends Controller
             'nome' => 'required|string|max:100',    
             'tipo_exame' => 'required|string',
             'data_coleta' => 'required|date|before_or_equal:today',
-            'laudo' => 'nullable|string',
+            'laudo' => 'nullable|string|max:500',
         ]);
 
         $exames->update($request->all());

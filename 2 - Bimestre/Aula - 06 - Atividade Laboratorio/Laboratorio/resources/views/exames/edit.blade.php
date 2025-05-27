@@ -6,7 +6,7 @@
     <form action="{{ route('exames.update', $exame) }}" method="post">
         <input type="text" name="nome" value="{{ $exame->nome }}" required>
         <input type="text" name="tipo_exame" value="{{ $exame->tipo_exame }}" required>
-        <input type="text" name="laudo" value="{{ $exame->laudo }}" required>
+        <input type="text" name="laudo" value="{{ $exame->laudo }}">
         <input type="date" value="{{ $exame->data_coleta }}" required>
         <button type="submit">Atualizar Exame</button>
     </form>
