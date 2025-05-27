@@ -33,7 +33,7 @@ class LabsController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:100',    //limita o numero de caracteres
-            'tipo_exame' => 'required|string',
+            'tipo_exame' => 'required|in:Sequenciamento,PCR,Microarray',
             'data_coleta' => 'required|date|before_or_equal:today', //before or equal == =<
             'laudo' => 'nullable|string|max:500'
         ]);
@@ -47,24 +47,24 @@ class LabsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LabsExames $exames)
+    public function edit(LabsExames $exame)
     {
-        return view('exames.edit', compact('exames'));
+        return view('exames.edit', compact('exame'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LabsExames $exames)
+    public function update(Request $request, LabsExames $exame)
     {
         $request->validate([
             'nome' => 'required|string|max:100',    
-            'tipo_exame' => 'required|string',
+            'tipo_exame' => 'required|in:Sequenciamento,PCR,Microarray',
             'data_coleta' => 'required|date|before_or_equal:today',
             'laudo' => 'nullable|string|max:500',
         ]);
 
-        $exames->update($request->all());
+        $exame->update($request->all());
         return redirect()->route('exames.index')->with('sucesso','Exame Alterado!');
 
     }
