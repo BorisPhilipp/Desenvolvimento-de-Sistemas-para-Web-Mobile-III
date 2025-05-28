@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body{
+    background-color: #1a1a1a;
+}
+
+.container-main{
+    text-align: center;
+    color: #fff;    
+}
+
+.container-index{
+    border: 1px solid white;
+    padding: 10px;
+    margin: 20px auto;
+    width: fit-content;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+}
+
+.box-index{
+    padding: 10px 5px;
+}
